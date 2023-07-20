@@ -15,9 +15,9 @@ python-dotenv = "*"
 openai = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+faker = "*"
 
 [dev-packages]
-faker = "*"
 ipdb = "*"
 
 [requires]
