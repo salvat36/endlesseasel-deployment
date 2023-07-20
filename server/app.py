@@ -19,7 +19,11 @@ from models import User, Review, Artwork, UserArtwork
 @app.route('/user-artworks')
 @app.route('/contact')
 @app.route('/create')
-@app.route('/artworks/<int:id>')
+@app.route('/artworks/:id')
+@app.route('/signup')
+@app.route('/login')
+@app.route('/authenticate')
+@app.route('/artworks')
 def index(id=0):
     return render_template("index.html")
 
