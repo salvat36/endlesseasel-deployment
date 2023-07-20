@@ -19,18 +19,17 @@ import openai
 # Instantiate app, set attributes
 app = Flask(
     __name__,
-    static_url_path='',
-    static_folder='../client/build',
-    template_folder='../client/build'
+    static_url_path="",
+    static_folder="../client/build",
+    template_folder="../client/build",
 )
 
-
 load_dotenv(".env")
-app.config["SQLALCHEMY_DATABASE_URI"] = environ.get('DATABASE_URI')
+app.config["SQLALCHEMY_DATABASE_URI"] = environ.get("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.json.compact = False
 app.secret_key = environ.get("SECRET_KEY", "dev")
-openai.api_key = environ.get('OPENAI_API_KEY', 'dev')
+openai.api_key = environ.get("OPENAI_API_KEY", "dev")
 
 # Define metadata, instantiate db
 metadata = MetaData(
@@ -40,12 +39,13 @@ metadata = MetaData(
         "ck": "ck_%(table_name)s_%(constraint_name)s",
     }
 )
+
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db, render_as_batch=True)
 db.init_app(app)
 
 # Instantiate REST API
-api = Api(app, prefix='/api')
+api = Api(app, prefix="/api")
 
 # Instantiate CORS
 CORS(app)
