@@ -17,8 +17,8 @@ const ArtDetail = () => {
 
   useEffect(() => {
     Promise.all([
-      fetch(`/artworks/${id}`),
-      fetch(`/artworks/${id}/reviews`),
+      fetch(`/api/artworks/${id}`),
+      fetch(`/api/artworks/${id}/reviews`),
     ]).then((values) => {
       if (values[0].ok) {
         values[0].json().then(setArtwork);
@@ -40,7 +40,7 @@ const ArtDetail = () => {
   const mappedReviews = reviews?.map((review) => <Comment review={review} />);
 
   const handleAddArtwork = () => {
-    fetch("/user-artworks", {
+    fetch("/api/user-artworks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),

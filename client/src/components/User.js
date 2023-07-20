@@ -7,7 +7,7 @@ const User = () => {
   const { artId } = useParams();
 
   useEffect(() => {
-    fetch(`/user-artworks/${artId}`)
+    fetch(`/api/user-artworks/${artId}`)
       .then((res) => {
         if (res.ok) {
           res.json().then(setUserArtwork);

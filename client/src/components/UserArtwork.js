@@ -21,7 +21,7 @@ const UserArtwork = () => {
   };
 
   const handleDeleteUserArtwork = (id) => {
-    fetch(`/user-artworks/${id}`, { method: "DELETE" }).then((res) => {
+    fetch(`/api/user-artworks/${id}`, { method: "DELETE" }).then((res) => {
       if (res.ok) {
         updateUserArtwork(id);
         alert("Successfully Deleted User-Book");
@@ -30,7 +30,7 @@ const UserArtwork = () => {
   };
 
   const handleDeleteUser = () => {
-    fetch(`users/${user.id}`, { method: "DELETE" }).then((res) => {
+    fetch(`/api/users/${user.id}`, { method: "DELETE" }).then((res) => {
       if (res.ok) {
         history.push("/");
         updateUser(null);

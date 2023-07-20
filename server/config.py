@@ -1,7 +1,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api
@@ -17,7 +17,14 @@ import openai
 
 
 # Instantiate app, set attributes
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
+)
+
+
 load_dotenv(".env")
 app.config["SQLALCHEMY_DATABASE_URI"] = environ.get('DATABASE_URI')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -38,7 +45,7 @@ migrate = Migrate(app, db, render_as_batch=True)
 db.init_app(app)
 
 # Instantiate REST API
-api = Api(app)
+api = Api(app, prefix='/api')
 
 # Instantiate CORS
 CORS(app)

@@ -19,7 +19,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/artworks")
+    fetch("/api/artworks")
       .then((res) => res.json())
       .then(setArtworks)
       .catch((error) => setError(error));

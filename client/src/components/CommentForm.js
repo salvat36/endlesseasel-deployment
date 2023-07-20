@@ -29,7 +29,7 @@ const CommentForm = ({ handleAddReview, artwork_id }) => {
     },
     validationSchema: updateSchema,
     onSubmit: (values, { resetForm }) => {
-      fetch(`/reviews`, {
+      fetch(`/api/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

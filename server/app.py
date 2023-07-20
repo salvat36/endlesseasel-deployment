@@ -10,20 +10,21 @@ from flask import Flask, request, make_response, session
 
 
 # Local imports
-from config import app, db, api, openai
+from config import app, db, api, openai, render_template
 from models import User, Review, Artwork, UserArtwork
 
-
-# 1.set prompt to a variable with request.get_json() to grab Data
-# 2.create formik form on front end to create request to pass into variable here
-# 3.collect response from the api
-# 4.add response to the database
-# 5.display database data to user as image or do I display response first??
-# 6. limit rate requests or et?
-
+#Static FRONT END Routes for Deployment
+@app.route('/')
+@app.route('/shop')
+@app.route('/user-artworks')
+@app.route('/contact')
+@app.route('/create')
+@app.route('/artworks/<int:id>')
+def index(id=0):
+    return render_template("index.html")
 
 # OpenAI Request
-@app.route("/create", methods=['POST'])
+@app.route("/api/create", methods=['POST'])
 def createImageFromPrompt():
     data = request.get_json()
     prompt = data.get('prompt')
@@ -37,7 +38,7 @@ def createImageFromPrompt():
     return {'image_url': image_url}
 
 
-@app.route("/artworks", methods=['POST'])
+@app.route("/api/artworks", methods=['POST'])
 def createArtworkFromPrompt():
     data = request.get_json()
     try:
@@ -56,17 +57,17 @@ def createArtworkFromPrompt():
         return make_response({"error": [str(e)]})
 
 
-# Home Route
-@app.route("/")
-def home():
-    return """
-    <h1>EndlessEasel</h1>
-    <img src='https://images.nightcafe.studio/jobs/YbfjF0xAPTQHTkbeCSCU/YbfjF0xAPTQHTkbeCSCU--1--1iy5g.jpg?tr=w-828,c-at_max' alt='not found' >
-    """
+# # Home Route
+# @app.route("/")
+# def home():
+#     return """
+#     <h1>EndlessEasel</h1>
+#     <img src='https://images.nightcafe.studio/jobs/YbfjF0xAPTQHTkbeCSCU/YbfjF0xAPTQHTkbeCSCU--1--1iy5g.jpg?tr=w-828,c-at_max' alt='not found' >
+#     """
 
 
 # Signup Route
-@app.route("/signup", methods=["POST"])
+@app.route("/api/signup", methods=["POST"])
 def signup():
     data = request.get_json()
     try:
@@ -85,7 +86,7 @@ def signup():
 
 
 # Login Route
-@app.route("/login", methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
     try:
         username = request.get_json().get("username")
@@ -101,7 +102,7 @@ def login():
 
 
 # Logout Route
-@app.route("/logout", methods=["DELETE"])
+@app.route("/api/logout", methods=["DELETE"])
 def logout():
     try:
         if session.get("user_id"):
@@ -114,7 +115,7 @@ def logout():
 
 
 # Authenticate Route
-@app.route("/authenticate", methods=["GET"])
+@app.route("/api/authenticate", methods=["GET"])
 def get():
     id = session.get("user_id")
     user = db.session.get(User, id)

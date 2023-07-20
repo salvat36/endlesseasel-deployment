@@ -41,7 +41,7 @@ const PromptForm = ({ handleAddPrompt, user_id }) => {
     validationSchema: createSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        const createImageResponse = await fetch("/create", {
+        const createImageResponse = await fetch("/api/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const PromptForm = ({ handleAddPrompt, user_id }) => {
           const imageURL = imageResponseData.image_url;
           setImageURL(imageURL);
 
-          const createArtworkResponse = await fetch("/artworks", {
+          const createArtworkResponse = await fetch("/api/artworks", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
