@@ -24,6 +24,7 @@ from models import User, Review, Artwork, UserArtwork
 @app.route('/login')
 @app.route('/authenticate')
 @app.route('/artworks')
+@app.route('/reviews')
 def index(id=0):
     return render_template("index.html")
 
