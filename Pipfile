@@ -11,14 +11,14 @@ sqlalchemy-serializer = "*"
 flask-restful = "*"
 flask-cors = "*"
 flask-bcrypt = "*"
-faker = "*"
 python-dotenv = "*"
-ipdb = "*"
 openai = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 
 [dev-packages]
+faker = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.8"
