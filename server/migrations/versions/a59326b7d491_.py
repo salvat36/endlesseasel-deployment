@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2d959af18439
+Revision ID: a59326b7d491
 Revises: 
-Create Date: 2023-07-04 00:37:35.998232
+Create Date: 2023-07-19 21:21:31.395876
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2d959af18439'
+revision = 'a59326b7d491'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,10 +24,11 @@ def upgrade():
     sa.Column('_password_hash', sa.String(), nullable=True),
     sa.Column('email', sa.String(), nullable=True),
     sa.Column('cart', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('username')
+    sa.UniqueConstraint('email', name=op.f('uq_users_email')),
+    sa.UniqueConstraint('username', name=op.f('uq_users_username'))
     )
     op.create_table('artworks',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -36,7 +37,7 @@ def upgrade():
     sa.Column('price', sa.Float(), nullable=True),
     sa.Column('title', sa.String(), nullable=True),
     sa.Column('image', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_artworks_user_id_users')),
     sa.PrimaryKeyConstraint('id')
@@ -46,7 +47,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('artwork_id', sa.Integer(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['artwork_id'], ['artworks.id'], name=op.f('fk_reviews_artwork_id_artworks')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_reviews_user_id_users')),
@@ -56,7 +57,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('artwork_id', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['artwork_id'], ['artworks.id'], name=op.f('fk_user_artworks_artwork_id_artworks')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_user_artworks_user_id_users')),
