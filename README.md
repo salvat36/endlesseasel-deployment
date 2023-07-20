@@ -1,44 +1,40 @@
-# Phase 4 Full-Stack Application Project Template
-
-## Learning Goals
-
-- Discuss the basic directory structure of a full-stack Flask/React application.
-- Carry out the first steps in creating your Phase 4 project.
-
-***
+# EndlessEasel
+- Created by Ryan Salvato
 
 ## Introduction
 
-Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin:
+- Welcome to EndlessEasel!  This app serves as a playground for Artists/Creators.  You're able to explore a collection of vast AI generated Artworks by other users.  Save your favorite works of art for later use and even generate your own artwork to share with the EndlessEasel community!
+
+***
+
+## File Structure
+
+- Before digging into the how-to on getting started running this application, I believe it's important to give a quick view of the file structure and a brief introduction of what you're looking at in the "tree" below.  
 
 ```console
-$ tree -L 2
-$ # the -L argument limits the depth at which we look into the directory structure
-.
 ├── CONTRIBUTING.md
 ├── LICENSE.md
+├── Pipfile
+├── Pipfile.lock
 ├── README.md
 ├── client
-│   ├── README.md
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   └── src
+│   ├── README.md
+│   ├── build
+│   ├── node_modules
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   └── src
+├── requirements.txt
 └── server
+    ├── __pycache__
     ├── app.py
     ├── config.py
+    ├── instance
     ├── migrations
     ├── models.py
     └── seed.py
 ```
-
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
-
-***
 
 ## Where Do I Start?
 
