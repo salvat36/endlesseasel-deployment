@@ -15,10 +15,11 @@ python-dotenv = "*"
 openai = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
-faker = "*"
+
 
 [dev-packages]
 ipdb = "*"
+faker = "18.13.0"
 
 [requires]
 python_version = "3.8"
