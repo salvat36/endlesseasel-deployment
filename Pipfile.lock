@@ -727,7 +727,7 @@
                 "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"
             ],
             "index": "pypi",
-            "version": "==1.0.0"
+            "version": "==0.21.1"
         },
         "pytz": {
             "hashes": [
